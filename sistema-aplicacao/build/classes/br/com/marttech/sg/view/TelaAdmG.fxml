@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1">
+	<FlowPane GridPane.columnIndex="0" GridPane.rowIndex="0">
+		
+		<Button text="Inicio"></Button>
+		<Button text="Meus Dados"></Button>
+		<Button text="Alunos"></Button>
+		<Button text="Servidores"></Button>
+	</FlowPane>
+</GridPane>

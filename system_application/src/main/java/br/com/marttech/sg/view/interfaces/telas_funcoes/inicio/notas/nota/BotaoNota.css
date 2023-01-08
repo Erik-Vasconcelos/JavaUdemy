@@ -1,0 +1,19 @@
+.Botao-Nota{
+	-fx-background-color: rgb(39, 41, 45);
+	-fx-background-radius: 3px;
+	-fx-text-fill: white;
+	-fx-font-weight: bolder;
+	-fx-font-size: 16px;
+	-fx-max-width: 300px;
+	-fx-min-width: 180px;
+	-fx-min-height: 35px;
+	
+}
+
+.Botao-Nota:hover{
+	-fx-background-color: rgba(5, 161, 251, 0.10);
+	-fx-border-radius: 3px;
+	-fx-border-width: 1px;
+	-fx-border-style: solid;
+	-fx-border-color: rgba(15, 113, 215);
+}

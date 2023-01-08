@@ -1,0 +1,76 @@
+.login{
+	/*-fx-background-color: linear-gradient(to right, rgb(0, 0, 70), rgb(28, 181, 224));*/
+	-fx-background-color: rgb(39, 41, 45);
+}
+
+.login-texto{
+	-fx-text-fill: white;
+	-fx-font-size: 17px;
+	-fx-font-family: Oswald;
+}
+
+.login-titulo{
+	-fx-font-size: 40px;
+	-fx-text-fill: rgb(69, 243, 255);
+	-fx-font-weight: bolder;
+	-fx-font-family: Oswald;
+}
+
+.login-form-campo{
+	-fx-text-fill: rgb(120, 120, 120);
+	-fx-min-width: 100px;
+	-fx-min-height: 35px;
+	-fx-font-weight: normal;
+	-fx-background-radius: 5px;
+	-fx-background-color: transparent;
+	-fx-border-width: 0 0 1 0;
+	-fx-border-style: solid;
+	-fx-border-color: rgb(69, 243, 255);
+}
+
+.login-form-campo:focused{
+	-fx-background-color: rgb(69, 243, 255);
+	-fx-text-fill: rgb(39, 41, 45);
+	-fx-border-width: 0;
+	
+}
+
+.login-form-campo-obrigatorio{
+	-fx-background-color: transparent;
+	-fx-min-height: 35px;
+	-fx-max-height: 38px;
+	-fx-border-width: 1 1 1 1;
+	-fx-border-style: solid;
+	-fx-border-radius: 5px;
+	-fx-border-color: red;
+	-fx-font-size: 14px;
+}
+
+.login-form-botao{
+	-fx-font-family: Oswald;
+	-fx-min-width: 110px;
+	-fx-min-height: 40px;
+	-fx-text-fill: rgb(39, 41, 45);
+	-fx-text-fill: rgb(69, 243, 255);
+	-fx-font-size: 15px;
+	-fx-background-color: transparent;
+	-fx-border-radius: 5px;
+	-fx-border-width: 2 2 2 2;
+	-fx-border-style: solid;
+    -fx-border-color: rgb(69, 243, 255);
+
+}
+
+.login-form-botao:pressed{
+	-fx-background-color: rgb(69, 243, 255);
+	-fx-text-fill: rgb(39, 41, 45);
+}
+
+/* .login-form-botao:active{
+	-fx-background-color: rgb(69, 243, 255);
+	-fx-text-fill: rgb(39, 41, 45);
+	-fx-transform: scale(0.98);
+}*/
+
+
+

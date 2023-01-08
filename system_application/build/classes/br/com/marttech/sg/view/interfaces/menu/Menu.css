@@ -1,0 +1,84 @@
+.Content{
+	-fx-background-color: rgb(32, 34, 38);
+	-fx-min-width: 290px;
+	-fx-min-height: 700px;
+	/*-fx-max-width: 500px;
+	-fx-max-height: 1200px;*/
+}
+
+
+.Titulo{
+	-fx-font-size: 35px;
+	-fx-text-fill: white;
+	-fx-padding: 15 0 10 0;
+}
+
+.Pesquisa{
+	-fx-background-color: transparent;
+	-fx-min-height: 40px;
+	-fx-min-width: 240px;
+	-fx-max-width: 450px;
+	-fx-max-height: 70px;
+	-fx-font-size: 15px;
+	-fx-text-fill: rgb(69, 243, 255);
+	-fx-border-width: 0 0 1 0;
+	-fx-border-style: solid;
+	-fx-border-color: #03DAC5;
+}
+
+.Botao{
+	-fx-min-width: 200px;
+	-fx-min-height: 40px;
+	-fx-max-width: 450px;
+	-fx-max-height: 60px;
+	-fx-pref-width: 300px;
+	-fx-font-weight: 300;
+	-fx-font-family: Rajdhani;
+	-fx-font-size: 20px;
+	-fx-text-fill: white;
+	-fx-background-color: transparent;
+	/*-fx-background-color: rgb(69, 243, 255);*/
+}
+
+.Botao:hover{
+	-fx-text-fill:rgba(3, 218, 197, 1);
+	-fx-background-color: rgb(44, 49, 53);
+	-fx-transition: 0.4s;
+}
+
+/*COR --- #03DAC5*/
+
+.Botao-Atual{
+	-fx-background-color: rgb(44, 49, 53);
+	-fx-text-fill:rgb(69, 243, 255);
+}
+
+.Label{
+	-fx-font-family: Rajdhani;
+	-fx-font-size: 17px;
+	-fx-text-fill: white;
+}
+
+.Content-Usuario{
+	-fx-background-color: linear-gradient(to right, #03dac5, #026d63);
+	-fx-min-height: 40px;
+	-fx-min-width: 240px;
+	-fx-max-width: 450px;
+	-fx-max-height: 60px;
+	-fx-background-radius: 22 7 7 22;
+}
+
+.Label-Nome-Usuario{
+	-fx-font-family: Oswald;
+	-fx-font-size: 15px;
+	-fx-text-fill: white;
+}
+
+.Botao-Icone-Usuario{
+	-fx-background-color: rgb(80, 80, 80);
+	-fx-min-height: 38px;
+	-fx-max-height: 38px;
+	-fx-min-width: 38px;
+	-fx-max-width: 38px;
+	-fx-background-radius: 8px;
+}

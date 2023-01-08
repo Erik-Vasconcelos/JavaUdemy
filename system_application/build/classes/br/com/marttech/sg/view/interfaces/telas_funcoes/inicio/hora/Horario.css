@@ -1,0 +1,17 @@
+.Container{
+	-fx-background-color: rgb(32, 34, 38);
+	-fx-background-radius: 15px;
+	-fx-min-width: 380px;
+	-fx-min-height: 100px;
+}
+
+.Label-Hora{
+	-fx-font-size: 65px;
+	-fx-text-fill: white;
+}
+
+.Label-Data{
+	-fx-font-size: 18px;
+	-fx-text-fill: white;
+}
+

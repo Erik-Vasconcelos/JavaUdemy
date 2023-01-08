@@ -1,0 +1,11 @@
+.Tela{
+	-fx-background-color: rgb(39, 41, 45);
+	-fx-min-width: 1000px;
+	-fx-min-height: 800px;
+}
+
+.Titulo{
+	-fx-text-fill: white;
+	-fx-font-size: 30px;
+}
+

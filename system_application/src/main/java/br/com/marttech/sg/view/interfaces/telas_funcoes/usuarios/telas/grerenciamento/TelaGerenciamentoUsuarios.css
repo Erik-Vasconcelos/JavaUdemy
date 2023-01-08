@@ -1,0 +1,60 @@
+.Tela{
+	-fx-background-color: rgb(39, 41, 45);
+	-fx-min-width: 1100px;
+	-fx-min-height: 800px;
+}
+
+.Titulo{
+	-fx-font-size: 30px;
+	-fx-text-fill: white;
+}
+
+.Texto{
+	-fx-font-size: 16px;
+	-fx-text-fill: white;
+	-fx-font-weight: bolder;
+}
+
+.Campo{
+	-fx-background-color: transparent;
+	-fx-max-width: 400px;
+	-fx-min-width: 300px;
+	-fx-min-height: 30px;
+	-fx-max-height: 35px;
+	-fx-font-size: 16px;
+	-fx-text-fill: white;
+}
+
+.Botao{
+	-fx-background-color: rgb(69, 243, 255);
+	-fx-text-fill: black;
+	-fx-min-width: 100px;
+	-fx-max-width: 120px;
+	-fx-min-height: 30px;
+	-fx-max-height: 30px;
+}
+
+.Botao-Icone{
+	-fx-background-color: transparent;
+}
+
+.Botao-Paginacao{
+	-fx-background-color: transparent;
+	-fx-text-fill: rgb(69, 243, 255);
+	-fx-border-width: 2 2 2 2;
+	-fx-border-style: solid;
+	-fx-border-radius: 3px;
+	-fx-border-color: rgb(69, 243, 255);
+}
+
+.Content-Pesquisa{
+	-fx-background-color: transparent;
+	-fx-max-width: 400px;
+	-fx-min-width: 350px;
+	-fx-min-height: 30px;
+	-fx-max-height: 35px;
+	-fx-border-width: 2 2 2 2;
+	-fx-border-style: solid;
+	-fx-border-radius: 3px;
+	-fx-border-color: rgb(69, 243, 255);
+}

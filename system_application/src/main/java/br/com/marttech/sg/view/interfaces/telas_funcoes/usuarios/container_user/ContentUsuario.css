@@ -1,0 +1,37 @@
+.Content{
+	-fx-min-height: 50px;
+	-fx-pref-height: 70px;
+	-fx-min-width: 750px;
+}
+
+.Content:hover{
+	-fx-background-radius: 8px;
+	-fx-text-fill: rgb(69, 143, 255);
+	-fx-transition: 0.7s;
+	-fx-opacity: 1;
+	-fx-border-color: rgb(69, 243, 255);
+	-fx-border-width: 0 0 2 0;
+	-fx-border-style: solid;
+	-fx-border-radius: 8px;
+}
+
+.Content-Escuro{
+	-fx-background-color: rgb(79, 81, 85);
+}
+
+.Content-Claro{
+	-fx-background-color: rgb(129, 131, 135);
+}
+
+.Texto{
+	-fx-font-size: 15px;
+	-fx-text-fill: white;
+}
+
+.Botao{
+	-fx-background-color: transparent;
+	-fx-max-height: 32px;
+	-fx-max-height: 32px;
+	-fx-min-width: 32px;
+	-fx-max-width: 32px;
+}

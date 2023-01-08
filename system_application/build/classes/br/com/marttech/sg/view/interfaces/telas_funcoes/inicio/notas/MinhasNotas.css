@@ -1,0 +1,15 @@
+.Container{
+	-fx-background-image: url('imagens/imagem.jfif');
+	-fx-min-width: 250px;
+	-fx-min-height: 550px;
+	-fx-background-radius: 15px;
+}
+
+.Titulo{
+	-fx-font-size: 30px;
+	-fx-text-fill: white;
+}
+
+.Botao-Add{
+	-fx-background-color: transparent;
+}

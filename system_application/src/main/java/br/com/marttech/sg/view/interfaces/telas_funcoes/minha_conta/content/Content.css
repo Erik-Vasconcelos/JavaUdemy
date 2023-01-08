@@ -1,0 +1,79 @@
+.Content{
+	-fx-background-color: rgb(28, 31, 34);
+	-fx-min-width: 950px;
+	-fx-min-height: 200px;
+	-fx-background-radius: 10px;
+}
+
+.Content-Alterado{
+	-fx-background-color: rgb(28, 31, 34);
+	-fx-min-width: 950px;
+	-fx-min-height: 500px;
+	-fx-background-radius: 10px;
+}
+
+.Label-Titulo{
+	-fx-text-fill: white;
+	-fx-font-size: 20px;
+	-fx-font-weight: 300;
+}
+
+.Label-Valor{
+	-fx-text-fill: rgb(69, 243, 255);
+	-fx-font-size: 15px;
+}
+
+.Botao{
+	-fx-background-color: transparent;
+	-fx-min-width: 150px;
+	-fx-min-height: 40px;
+	-fx-text-fill: rgb(69, 243, 255);
+	-fx-border-width: 2 2 2 2;
+	-fx-border-radius: 5px;
+	-fx-border-style: solid;
+	-fx-border-color: rgb(69, 243, 255);
+}
+
+.Form-Label-Titulo{
+	-fx-text-fill: white;
+	-fx-font-size: 25px;
+}
+
+.Form-Label{
+	-fx-text-fill: white;
+	-fx-font-size: 15px;
+	-fx-padding: 10 0 2 0;
+}
+
+.Form-Campo{
+	-fx-background-color: transparent;
+	-fx-min-width: 300px;
+	-fx-min-height: 35px;
+	-fx-border-radius: 5px;
+	-fx-border-color: rgb(69, 243, 255);
+	-fx-border-style: solid;
+	-fx-text-fill: white;
+	-fx-font-size: 15px;
+}
+
+.Form-Agrupador-Botoes{
+	-fx-padding: 14 0 2 0;
+}
+
+.Form-Botao{
+	-fx-background-radius: 5px;
+	-fx-min-width: 100px;
+	-fx-min-height: 30px;
+	-fx-pref-width: 120px;
+	-fx-pref-height: 35px;
+}
+
+.Form-Botao-Cancelar{
+	-fx-background-color:  rgb(220, 49, 47);
+	-fx-text-fill: white;
+}
+
+.Form-Botao-Confirmar{
+	-fx-background-color: rgb(69, 243, 255);
+	-fx-text-fill: black;
+}

@@ -1,0 +1,74 @@
+.Tela{
+	-fx-background-color: rgb(39, 41, 45);
+}
+
+.Texto-titulo{
+	-fx-text-fill: white;
+	-fx-font-size: 24px;
+}
+
+.Texto-Sub-Titulo{
+	-fx-text-fill: white;
+	-fx-font-size: 20px;
+}
+
+.Texto-form{
+	-fx-text-fill: rgb(69, 243, 255);
+	-fx-font-size: 16px;
+}
+
+.Campo-form{
+	-fx-background-color: transparent;
+	-fx-font-size: 16px;
+	-fx-font-weight: bolder;
+	-fx-text-fill: #FFFFFF;
+	
+	-fx-border-width: 0 0 1 0;
+	-fx-border-style: solid;
+    -fx-border-color: rgb(90, 90, 90);
+}
+
+.Campo-form-edicao{
+	-fx-border-width: 0 0 1 0;
+	-fx-border-style: solid;
+    -fx-border-color: rgb(69, 243, 255);
+}
+
+.Campo-form:focused{
+	-fx-background-color:  rgb(69, 243, 255);
+	-fx-text-fill: black;
+}
+
+.Botao{
+	-fx-min-height: 35px;
+	-fx-pref-height: 40px;
+	-fx-min-width: 105px;
+	-fx-pref-width: 100px;
+	-fx-text-fill: white;
+	-fx-font-weight: bolder;
+	-fx-font-size: 16px;
+}
+
+.Botao-padrao{
+	-fx-background-color:  rgb(69, 243, 255);
+}
+
+.Botao-cancelar{
+	-fx-background-color:  rgb(220, 49, 47);
+}
+
+.Imagem{
+	-fx-min-centerX: 250px;
+	-fx-min-centerY: 250px;
+	-fx-min-radius: 125px;
+}
+
+.Botao-Selecionar-Imagem{
+	-fx-background-color: transparent;
+	-fx-font-size: 13px;
+	-fx-text-fill: rgb(69, 243, 255);
+	
+	-fx-border-width: 2 2 2 2;
+	-fx-border-style: solid;
+    -fx-border-color: rgb(69, 243, 255);
+}

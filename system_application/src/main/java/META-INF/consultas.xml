@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+	
+	<named-query name="verificarUsuarios">
+		<query>
+			select count(s.id) from Servidor s
+		</query>
+	</named-query>
+	
+	<named-query name="consultaUsuariosAproxima">
+		<query>
+			select s from Servidor s
+			where s.matricula &lt;&gt; :matriculal 
+			and s.nome like :nome
+		</query>
+	</named-query>
+
+	<named-query name="consultarMatricula">
+		<query>
+			select s from Servidor s
+			where s.matricula = :valor
+		</query>
+	</named-query>
+	
+	<named-query name="consultarMatriculaServidor">
+		<query>
+			select s from Servidor s
+			where s.matricula = :valor
+		</query>
+	</named-query>
+	
+	<named-query name="consultarQtdTotalUsuarios">
+		<query>
+			select count(s.id) from Servidor s 
+			where s.matricula &lt;&gt; :matricula 
+			and s.nivelPermissao &lt; :nivel
+		</query>
+	</named-query>
+	
+	<named-query name="consultarQtdDoFiltro">
+		<query>
+			select count(s.id) from Servidor s 
+			where s.matricula &lt;&gt; :matricula  
+			and s.nivelPermissao &lt; :nivel 
+			and s.nome like :nome
+		</query>
+	</named-query>
+	
+	<named-query name="consultarLimiteNotas">
+		<query>
+			SELECT COUNT(n.id) FROM Nota n 
+			WHERE n.servidor.id = :id
+		</query>
+	</named-query>
+	
+	<named-native-query name="consultarParteDados" result-set-mapping="parteDadosMap">
+		<query>
+			Select id, matricula, nome, email, cargo, permissao from Servidor 
+			Where matricula != :matri and nivelPermissao &lt; :nivel
+		</query>
+	</named-native-query>
+	
+	<named-native-query name="consultarParteDadosPorFiltro" result-set-mapping="parteDadosMap">
+		<query>
+			Select id, matricula, nome, email, cargo, permissao from Servidor
+			Where matricula != :matri and nivelPermissao &lt; :nivel and nome like :parteNome
+		</query>
+	</named-native-query>
+	
+	<sql-result-set-mapping name="parteDadosMap">
+		<constructor-result target-class="br.com.marttech.sg.model.dto.ServidorDTO">
+		
+			<column name="id" class="java.lang.String"/>
+			<column name="matricula" class="java.lang.String"/>
+			<column name="nome" class="java.lang.String"/>
+			<column name="email" class="java.lang.String"/>
+			<column name="cargo" class="java.lang.String"/>
+			<column name="permissao" class="java.lang.String"/>
+			
+		</constructor-result>
+		
+	</sql-result-set-mapping>
+
+</entity-mappings>

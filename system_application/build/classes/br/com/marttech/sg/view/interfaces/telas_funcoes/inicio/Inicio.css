@@ -1,0 +1,8 @@
+.Container{
+	-fx-background-color: rgb(39, 41, 45);
+	-fx-min-width: 1000px;
+	-fx-min-height: 700px;
+	/*-fx-max-width: 1600px;
+	-fx-max-height: 1080px;*/
+	
+}

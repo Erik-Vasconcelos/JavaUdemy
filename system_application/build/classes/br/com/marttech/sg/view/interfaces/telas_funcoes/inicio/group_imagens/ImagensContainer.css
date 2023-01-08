@@ -1,0 +1,19 @@
+.Container{
+	-fx-background-color: rgb(32, 34, 38);
+	-fx-background-radius: 15px;
+	-fx-min-width: 500px;
+	-fx-min-height: 350px;
+	
+	/*-fx-max-width: 1100px;
+	-fx-max-height: 600px;*/
+}
+
+.Botao-Mudar{
+	-fx-background-color: rgb(111, 111, 111);
+	-fx-background-radius: 3px;
+	-fx-min-width: 24px;
+	-fx-max-width: 24px;
+	-fx-min-height: 50px;
+	-fx-max-height: 50px;
+	
+}

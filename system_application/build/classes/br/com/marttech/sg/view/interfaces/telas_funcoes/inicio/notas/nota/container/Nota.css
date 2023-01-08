@@ -1,0 +1,63 @@
+.Agrupador{
+	-fx-background-color: rgb(39, 41, 45);
+	-fx-min-width: 300;
+	-fx-min-height: 430;
+}
+
+.Campo-Titulo{
+	-fx-background-color: rgb(52, 54, 58);
+	-fx-text-fill: white;
+	-fx-font-size: 16px;
+	-fx-font-weight: bolder;
+	-fx-min-height: 30px;
+	-fx-max-width: 230px;
+}
+
+.Campo-Titulo-Edicao{
+	-fx-background-color: rgb(32, 34, 38);
+}
+
+.Seletor-Data > .text-field{
+	-fx-background-color: rgb(52, 54, 58);
+	-fx-text-fill: white;
+}
+
+.Seletor-Data-Edicao > .text-field{
+	-fx-background-color: rgb(32, 34, 38);
+}
+
+.Area-Texto{
+	-fx-text-fill: white;
+	-fx-font-size: 15px;
+}
+
+.Area-Texto .content{
+	-fx-background-color: rgb(52, 54, 58);
+}
+
+.Area-Texto-Edicao .content{
+	-fx-background-color: rgb(32, 34, 38);
+}
+
+.Botao{
+	-fx-background-color: transparent;
+	-fx-min-width: 60px;
+	-fx-min-height: 20px;
+}
+
+.Botao-Editar{
+	-fx-background-color: rgb(247, 198, 42);
+}
+
+.Botao-Salvar{
+	-fx-background-color: rgb(69, 243, 255);
+}
+
+.Botao-Excluir{
+	-fx-background-color: rgb(182, 24, 17);
+	-fx-text-fill: white;
+}
+
+.Label{
+	-fx-text-fill: white;
+}
