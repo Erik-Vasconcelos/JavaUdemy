@@ -1,0 +1,115 @@
+
+----------------------Comandos Básicos---------------------
+show dbs
+
+use wm
+
+show dbs
+
+db.createCollection('estados')
+
+show dbs
+show collections
+
+db.createCollection('Estados')
+
+show collections
+
+db.Estados.drop()
+
+show collections
+
+
+----------------------Inserir Dados---------------------
+
+cls 
+use wm
+
+db.estados.insert({nome: "Acre", sigla: "AC", regiao: "Norte"}) 
+ira inserir os dados mesmo sem ter previamnte ciado a colecao. 
+A colecao ira ser criada automaticamente
+
+show dbs
+
+db.estados.save({nome: "Alagoas", sigla: "AL", regiao: "Nordeste", populacao: 3322000})
+
+.save serve tanto para inserir quanto para atualizar
+Mesmo passando atributos a mais, ira ser inserido o registro porque o banco é sem schema
+
+db.estados.find() mostra os dados inseridos em estados 
+
+Encadeamento de funcoes
+db.estados.find().pretty() mostra os dados formatados no estilo Json
+
+db.estados.insert({
+    nome: "Rio de Janeiro",
+    sigla: "RJ",
+    regiao: "Sudeste",
+    cidades: [{
+        nome: "Niterói",
+        area: 555.2,
+        populacao: 78596
+    }]
+})
+
+db.estados.find().pretty()
+
+db.help()
+
+db. + tab
+
+Estado
+nome = São Paulo, sigla = SP, regiao = Sudeste
+    Cidades
+    nome = Campinas, area = 795.7, prefeito = Jonas Donizette, populacao = 1081000
+    nome = Garulhos, populacao = 1325000
+    nome = Sorocaba, distanciaCapital = 87, populacao = 644919
+
+Cada Cidade tem o atributo _id <- ObjectId
+
+db.estados.insert({
+    nome: "São Paulo",
+    sigla: "SP",
+    regiao: "Sudeste",
+    cidades: [
+        {_id: ObjectId(), nome: "Campinas", area: 795.7, prefeito: "Jonas Donizette", populacao: 1081000},
+        {_id: ObjectId(), nome: "Garulhos", populacao: 1325000},
+        {_id: ObjectId(), nome: "Sorocaba", distanciaCapital: 87, populacao: 644919}
+    ]
+}) 
+
+db.estados.find()
+
+db.estados.find().pretty()
+
+db.estados.findOne()
+
+db.estados.findOne({sigla: "RJ"})
+
+db.estados.find({$or: [{sigla: "RJ"}, {sigla: "AL"}]})
+
+db.estados.find({$or: [{sigla: "RJ"}, {sigla: "AL"}]}).pretty()
+
+cls
+
+db.estados.find({populacao: {$exists: true}})
+
+db.estados.find({populacao: {$exists: true}}).pretty()
+
+db.estados.find().skip(1)
+
+db.estados.find().skip(1).limit(2)
+
+db.estados.count()
+
+db.estados.find({sigla: "SP"},  {nome: 1, sigla: 1})
+db.estados.find({sigla: "SP"},  {nome: 1, sigla: 1, _id: 0})
+
+db.estados.find({sigla: "SP"}, {cidades: {nome: 1}})
+
+db.estados.find({sigla: "SP"}, {cidades: {nome: 1}}).pretty()
+
+db.estados.find({sigla: "SP"}, {"cidades.nome": 1, _id: 0}).pretty()
+ 
+
+

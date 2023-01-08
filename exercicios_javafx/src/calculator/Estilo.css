@@ -1,0 +1,46 @@
+
+/*Estilo da calculadora*/
+.calculadora{
+	-fx-background-color: rgb(26, 31, 50);
+	
+}
+
+
+/*Estilo botoes*/
+.botao{
+	-fx-background-color: rgb(53, 58, 78);
+	-fx-background-radius: 5px;
+	-fx-text-fill: white;
+	-fx-font-size: 18px;
+	
+}
+
+.botao-operacao{
+	-fx-background-color: rgb(44, 49, 69);
+	
+}
+
+.botao-result{
+	-fx-background-color: rgb(76, 194, 255);
+}
+
+.botao-barra-titulo{
+	-fx-font-size: 16px;
+	-fx-text-fill: white;
+	-fx-min-width: 40px;
+	-fx-background-color: transparent;
+	
+}
+
+/*Tela*/
+.display{
+	-fx-font-size: 45px;
+	-fx-font-weight: bold;
+	-fx-text-fill: white;
+}
+
+.texto{
+	-fx-font-size: 15px;
+	-fx-text-fill: white;
+}
+

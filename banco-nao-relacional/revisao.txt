@@ -1,0 +1,121 @@
+db.Pessoa.insert({
+    nome: 'Gustavo',
+    cpf: '789.654.321-78',
+    idade: 15,
+    apelidos: [
+        {_id: ObjectId(), nome: 'Gordo'},
+        {_id: ObjectId(), nome: 'Gordinho'}
+    ],
+    endereco: 'Arisco'
+})
+
+db.Pessoa.insert({nome: 'Paulo', idade: 19});
+
+db.Pessoa.find({nome: 'Gustavo'}).pretty()
+
+db.Pessoa.find({$or: [{nome: 'Erik'}, {nome: 'Paulo'}]})
+
+db.Pessoa.find({apelidos: {$exists: true}}).pretty()
+
+db.Pessoa.find().skip(1)
+db.Pessoa.find().skip(1).limit(1).pretty()
+
+db.Pessoa.count();
+
+db.Pessoa.find({$or: [{nome: 'Erik'}, {nome: 'Paulo'}]}, {_id: 0, nome: 1, idade: 1})
+db.Pessoa.find({$or: [{nome: 'Erik'}, {nome: 'Paulo'}]}, {_id: 0, nome: 1, idade: 1}).pretty()
+
+db.Pessoa.find({nome: 'Gustavo'}, {nome: 1, apelidos: 1, _id: 0}).pretty()
+
+db.Pessoa.find({nome: 'Gustavo'}, {nome: 1, "apelidos.nome": 1, _id: 0}).pretty()
+
+
+db.Pessoa.aggregate({$project: {nome: 1, idade:1, _id: 0}})
+
+db.Pessoa.aggregate({$project: {idade: {$sum: "$idade"}, nome: 1, _id: 0}})
+
+
+db.estados.aggregate(
+    {$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0}},
+    {$group: {_id: null, populacaoTotal: {$sum: "$populacao"}}},
+    {$project: {_id: 0, populacaoTotal: 1}}
+)
+
+db.estados.aggregate([
+    {$match: {"cidades.nome": "Garulhos"}},
+    {$unwind: "$cidades"}
+]).pretty()
+
+db.estados.aggregate([
+    {$match: {"cidades.nome": "Garulhos"}},
+    {$unwind: "$cidades"},
+    {$match: {"cidades.nome": "Garulhos"}}
+]).pretty()
+
+db.estados.aggregate([
+    {$match: {"cidades.nome": "Garulhos"}},
+    {$unwind: "$cidades"},
+    {$match: {"cidades.nome": "Garulhos"}},
+    {$project: {_id: "$cidades._id"}}
+]).pretty()
+
+db.Pessoa.update({nome: 'Erik'}, {$set: {nome: "Erik Vasconcelos"}})
+
+db.Pessoa.update({nome: 'Gustavo'}, {$push: {apelidos: {nome: 'Porcon 2'}}})
+
+db.Pessoa.update({}, {$set: {pais: 'BR'}}, {multi: true})
+
+db.Pessoa.remove({$or: [{"apelidos.[.nome": "Porco"}, {"apelidos.[.nome": "Baé"}]})
+
+
+db.Pessoa.aggregate({$match: {nome: "Paulo"}})
+
+db.Pessoa.remove({idade: {$lt: 16}})
+
+db.Pessoa.remove({idade: {$gt: 20}})
+
+db.Endereco.insert({nome: 'Arisco'})
+db.Endereco.insert({nome: 'Serrote'})
+db.Endereco.insert({nome: 'Fernando'})
+
+db.Endereco.find({nome: 1, _id: 1}).pretty()
+
+db.Pessoa.insert(
+    {nome: "Flavio", enderecoId: ObjectId("63a7453727bdd49840113adb")}
+)
+
+db.Pessoa.insert(
+    {nome: "Carlos", enderecoId: ObjectId("63a7453727bdd49840113adc")}
+)
+
+db.Pessoa.insert(
+    {nome: "Luiz", enderecoId: ObjectId("63a7453927bdd49840113add")}
+)
+
+db.Pessoa.aggregate(
+    {$match: {nome: "Flavio"}},
+    {$lookup: {
+        from: "Endereco",
+        localField: "enderecoId",
+        foreignField: "_id",
+        as: "Endereco"
+    }}
+).pretty()
+
+db.empresas.aggregate(
+    {$match: {nome: "Vale"}},
+    {$lookup: {
+        from: "estados",
+        localField: "cidadeId",
+        foreignField: "cidades._id",
+        as: "estado"
+    }},
+    {$unwind: "$estado"},
+    {$unwind: "$estado.cidades"},
+    {$addFields: {mesmaCidade: {$cmp: ["$estado.cidades._id", "cidadeId"]}}},
+    {$match: {mesmaCidade: 0}}
+    
+).pretty()
+
+
+

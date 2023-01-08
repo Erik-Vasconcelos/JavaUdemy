@@ -1,0 +1,16 @@
+.menu{
+	-fx-background-color : #c9c9c9;
+}
+
+.botao{
+	-fx-background-color : #e8e8e8;
+	-fx-min-height: 15px;
+	-fx-min-width: 70px;
+}
+
+.texto{
+	-fx-font-size: 28px;
+	-fx-font-size: 28px;
+	-fx-font-wheit: bold;
+	
+}

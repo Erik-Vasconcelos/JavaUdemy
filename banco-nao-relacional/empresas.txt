@@ -1,0 +1,23 @@
+db.estados.find().pretty()
+
+db.empresas.insert({
+    nome: "Bradesco",
+    estadoId: ObjectId("6362bed27428d2131d30ea70")
+})
+
+db.empresas.insert({
+    nome: "Vale",
+    cidadeId: ObjectId("6362bed27428d2131d30ea6f")
+})
+
+db.estados.insert({
+    _id: ObjectId(),
+    nome: "Rio de Janeiro",
+    sigla: "RJ",
+    regiao: "Sudeste",
+    cidades: [{
+        nome: "Niterói",
+        area: 555.2,
+        populacao: 78596
+    }]
+})

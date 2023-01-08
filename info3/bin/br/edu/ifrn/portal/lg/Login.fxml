@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1" 
+	fx:controller="br.edu.ifrn.portal.lg.LoginController" 
+	styleClass="Login"
+	vgap="5"
+>
+	<padding>
+		<Insets left="20" right="20" top="20" bottom="20" />
+	</padding>
+	
+	<columnConstraints>
+		<ColumnConstraints halignment="CENTER"/>
+	</columnConstraints>
+	
+	<Label text="Matricula:" 
+		GridPane.columnIndex="0" GridPane.rowIndex="1" 
+		GridPane.halignment="LEFT"
+		styleClass="Label">
+	</Label>
+	
+	<TextField 
+		GridPane.columnIndex="0" GridPane.rowIndex="2" 
+		styleClass="Campo"
+		fx:id="campoMatricula">
+	</TextField>
+	
+	<Label text="Senha:" 
+		GridPane.columnIndex="0" GridPane.rowIndex="3"
+		GridPane.halignment="LEFT"
+		styleClass="Label">
+	</Label>
+	
+	<PasswordField 
+		GridPane.columnIndex="0" GridPane.rowIndex="4"
+		styleClass="Campo"
+		fx:id="campoSenha">
+	</PasswordField>
+	
+	<Button 
+		text="Entrar" GridPane.columnIndex="0" 
+		GridPane.rowIndex="5"
+		styleClass="Botao"
+		onAction="#entrar">
+		
+		<GridPane.margin>
+			<Insets top="20"></Insets>
+		</GridPane.margin>
+	</Button>
+	
+</GridPane>
+

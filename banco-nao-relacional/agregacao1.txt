@@ -1,0 +1,38 @@
+ 
+ use wm
+ db.estados.aggregate([
+    {$project: {nome: 1, "cidades.nome": 1, _id: 0}}
+ ])
+
+
+ db.estados.aggregate([
+    {$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0}},
+    {$group: {_id: null, populacaoTotal: {$sum: "$populacao"}}},
+    {$project: {populacaoTotal: 1, _id: 0}}
+ ]
+
+O _id do group é a condicao pela qual vai ser feito o agrupamento
+
+ Resultado: 
+
+1-
+{ "sigla" : "AC", "populacao" : 0 }
+{ "sigla" : "AL", "populacao" : 0 }
+{ "sigla" : "RJ", "populacao" : 78596 }
+{ "sigla" : "SP", "populacao" : 3050919 }
+
+2-
+{ "_id" : null, "populacaoTotal" : 3129515 }
+
+3-
+ { "populacaoTotal" : 3129515 }
+
+ 
+
+ db.estados.aggregate([
+    {$match: {"cidades.nome": "Sorocaba"}},
+    {$unwind: "$cidades"},  //para cada cidades um documento com o estado e a cidade
+    {$match: {"cidades.nome": "Sorocaba"}}, //filtra o documento que tem a cidade Sorocaba
+    {$project: {_id:  "$cidades._id"}}
+ ]).pretty()
+

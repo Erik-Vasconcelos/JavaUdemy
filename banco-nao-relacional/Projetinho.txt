@@ -1,0 +1,332 @@
+use projeto
+
+db.createCollection("Estados")
+show collections
+
+//Inseir um documento por vez
+db.Estados.insertOne(
+    {
+        nome: "Rio Grande do Norte",
+        sigla: "RN",
+        regiao: "Nordeste",
+        area: 52.797,
+        dataEmancipacao: new Date(1818, 03, 18)
+    }
+)
+
+db.Estados.find().pretty()
+
+//Inseir vários documentos por vez
+db.Estados.insertMany([
+    {
+        nome: "Paraíba",
+        sigla: "PB",
+        regiao: "Nordeste",
+        area: 56.585,
+        dataEmancipacao: new Date(1831, 10, 15)
+    },
+    {
+        nome: "Pernambuco",
+        sigla: "PE",
+        regiao: "Nordeste",
+        area: 98.312,
+        dataEmancipacao: new Date(1817, 02, 06)
+    }
+])
+
+//tráz somente um documento
+db.Estados.findOne()
+
+db.Estados.find().pretty()
+
+//maior que >
+db.Estados.find({area: {$gt: 56.585}}).pretty()
+
+//maior ou igual >=
+db.Estados.find({area: {$gte: 56.585}}).pretty()
+
+//menor que <
+db.Estados.find({area: {$lt: 56.585}}).pretty()
+
+//menor ou igual <=
+db.Estados.find({area: {$lt: 56.585}}).pretty()
+
+//diferente
+db.Estados.find({ area: { $ne: 56.585 } }).pretty()
+
+//Estado com menor tempo de emancipação
+
+/*Este método aceita um documento contendo uma lista de campos acompanhado do seu valor de 
+ordenação. Para especificar o tipo de ordenação, 1 e -1 são usados. 1 é usado para estabelecer
+ uma ordenação crescente enquanto -1 é usado para estabelecer a ordem decrescente.*/
+
+db.getCollection("Estados").find().sort({"dataEmancipacao": -1}).limit(1).pretty()
+            OU
+db.Estados.find().sort({"dataEmancipacao": -1}).limit(1).pretty()
+
+//Estado como maior tempo de emanciopação
+db.Estados.find().sort({dataEmancipacao: 1}).limit(1).pretty()
+
+
+db.Estados.update({sigla: "RN"}, 
+    {$set: {
+        cidades: [
+            {
+                _id: ObjectId(),
+                nome: "Nova Cruz",
+                prefeito: "Flávio de Beroi",
+                populacao: 37.695 
+            },
+            {
+                _id: ObjectId(),
+                nome: "Passa e Fica",
+                prefeito: "Flaviano Lisboa",
+                populacao: 13.474
+            }
+        ]
+        }
+    }
+)
+
+db.Estados.update({sigla: "PB"}, 
+    {$set: { 
+        cidades: [
+            {
+                _id: ObjectId(),
+                nome: "Campina Grande",
+                prefeito: "Bruno Cunha",
+                populacao: 402.912 
+            },
+            {
+                _id: ObjectId(),
+                nome: "João Pessoa",
+                prefeito: "Cícero Lucena",
+                populacao: 817.511
+            }
+        ]
+        }
+    }
+)
+
+db.Estados.update({sigla: "PE"},
+    {$set: { 
+        cidades: [
+            {
+                _id: ObjectId(),
+                nome: "Santa Cruz do Capibaribe",
+                prefeito: "Fábio Queiroz",
+                populacao: 111.812
+            },
+            {
+                _id: ObjectId(),
+                nome: "Recife",
+                prefeito: "João Henrique",
+                populacao: 1653461
+            }
+        ]
+        }
+    }
+)
+
+db.Estados.find({}, 
+    {_id: 0, nome: 1, sigla: 1, "cidades.nome": 1, "cidades.prefeito": 1}).pretty()
+
+db.Estados.aggregate(
+    {$project: {populacao_total: {$sum: "$cidades.populacao"}, _id: 0, nome: 1}}
+)
+
+db.Estados.aggregate(
+    {$project: {populacao_total: {$sum: "$cidades.populacao"}, _id: 0, nome: 1}}
+)
+
+/*db.Estados.aggregate([
+    {$project: {populacao_total: {$sum: "$cidades.populacao"}, _id: 0, nome: 1}},
+    {$match: {populacao_total: {$max: "$populacao_total"}}}
+])
+
+db.Estados.find().sort({"cidades.populacao": -1}).limit(1).pretty();
+db.Estados.aggregate({$group: {_id: null,  maior_area: {$max: "$area"}}});*/
+
+
+db.Estados.findOne({"cidades.nome": "Recife"})
+   
+db.Estados.find({$or: [
+    {"cidades.nome": "Santa Cruz do Capibaribe"},
+    {"cidades.nome": "Nova Cruz"}
+]}).pretty()
+
+db.Estados.aggregate([
+    {$project: {populacao: {$sum: "$cidades.populacao"}, _id: 0, nome: 1}},
+    {$group: {_id: null, populacao_total: {$sum: "$populacao"}}},
+    {$project: {_id: 0, populacao_total: 1}}
+])
+
+
+db.Estados.aggregate([
+    {$match: {"cidades.nome": "Recife"}},
+    {$unwind: "$cidades"},
+    {$match: {"cidades.nome": "Recife"}},
+    {$project: {_id: 0, nome: 1, sigla: 1, "cidades._id": 1, "cidades.nome": 1, "cidades.populacao": 1}}
+])
+
+db.Estados.aggregate([
+    {$match: {"cidades.prefeito": "Flávio de Beroi"}},
+    {$unwind: "$cidades"},
+    {$match: {"cidades.prefeito": "Flávio de Beroi"}},
+    {$project: {_id: 0,"cidades.nome": 1, "cidades.populacao": 1, "cidades.prefeito": 1}},
+    {$addFields: {E_Prefeito: {$cmp: ["cidades.prefeito", "Flávio de Beroi"]}}}
+]).pretty()
+
+db.Estados.aggregate([
+    {$project: {_id: 0, nome: 1, sigla: 1, dataEmancipacao: 1}}
+])
+
+db.Estados.update({sigla: "RN"}, {$set: {dataEmancipacao: new Date(1818, 02, 18)}})
+
+db.Estados.find().limit(1).pretty()
+
+db.Estados.update({sigla: "RN"}, {$push: 
+    {cidades: 
+        {_id: ObjectId(), nome: "Natal", prefeito: "Álvaro Dias", populacao: 890.480}
+    }
+})
+
+db.Estados.updateMany({}, {$set: {pais: "BR"}})
+
+db.Estados.aggregate([
+    {$project: {nome: 1, pais: 1}}
+]).pretty()
+
+//O $push tambem funciona para adicionar um array de objetos
+db.Estados.update({sigla: "RN"}, 
+    {$set: {praias: [  
+            {
+                nome: "Genipabú",
+                nota: 10,
+                melhor_praia: true
+            },
+            {
+                nome: "Pirangi",
+                nota: 8
+            },
+            {
+                nome: "Baía Formosa",
+                nota: 9.8
+            }
+        ]}
+    }
+)
+
+db.Estados.findOne()
+
+//remove a praia de Pirangi do array de praias do Rio Grande do Norte
+db.getCollection("Estados").update({sigla: "RN"}, 
+    {$pull: {"praias": {"nome": "Pirangi"}} }
+)
+
+db.Estados.find({praias: {$exists: true}}).pretty()
+
+db.Estados.update({sigla: "RN"}, {$push: {cidades: {nome: "Viçosa", populacao: 1696}}})
+
+db.getCollection("Estados").update({sigla: "RN"}, 
+    {$pull: {"cidades": {"nome": "Viçosa"}}}
+)
+
+db.Estados.aggregate([
+    {$project: {populacao: {$sum: "$cidades.populacao"}, nome: 1}}
+])
+
+db.Estados.insert({nome: "Alagoas", sigla: "AL",populacao: 500.000})
+
+db.Estados.update({sigla: "AL"}, {$set: {populacao: 500000}})
+
+db.Estados.aggregate([
+    {$project: {nome:1, sigla: 1, populacao: 1}}
+])
+
+db.Estados.remove({populacao: {$lte: 500000}}, 1) //limita a quantidade de documentos a serem excluídos
+
+db.createCollection("Empresas")
+
+db.Estados.aggregate([
+    {$project: {"cidades._id": 1, "cidades.nome": 1}}
+]).pretty()
+
+db.Empresas.insertMany([
+    {
+        nome: "Nordestão",
+        cnpj: "08.030.363/0031-05",
+        valor_mercado: 94739438.00,
+        cidade_id: ObjectId("63ac45370d2693109e3f1f42")
+    },
+    {
+        nome: "Ford",
+        cnpj: "20.030.582/5824-87",
+        valor_mercado: 841815154.00,
+        cidade_id: ObjectId("63a9f2fa090718d82be88076")
+    },
+    {
+        nome: "Amazon",
+        cnpj: "28.896.256/7851-04",
+        valor_mercado: 1551718878.54,
+        cidade_id: ObjectId("63a9f440090718d82be88078")
+    }
+
+])
+
+ 
+db.Empresas.aggregate([
+    {$match: {nome: "Nordestão"}},
+    {$lookup: {
+        from: "Estados",
+        localField: "cidade_id",
+        foreignField: "cidades._id",
+        as: "Estado"
+    }},
+    {$unwind: "$Estado"}, //destrinchando o estado que é um array
+    {$unwind: "$Estado.cidades"},   /*destrinchando o array de cidades no estado e separando cada uma em estado e uma
+            cidade, ou seja, Estado: cidade1, cidade2, cidade3 ->
+            Estado: cidade1, Estado: cidade2, Estado: cidade3.*/
+    {$addFields: {mesmaCidade: {$cmp: ["$Estado.cidades._id", "$cidade_id"]}}}, //adicionando campo de comparação 
+    {$match: {mesmaCidade: 0}},
+    {$project: {_id: 0, nome: 1, valor_mercado: 1, "Estado.nome": 1, "Estado.cidades.nome": 1, "Estado.cidades.prefeito": 1}}
+]).pretty()
+
+db.Empresas.aggregate([
+    {$match: {nome: "Nordestão"}},
+    {$lookup: {
+        from: "Estados",
+        localField: "cidade_id",
+        foreignField: "cidades._id",
+        as: "Estado"
+    }},
+    {$project: {_id: 0, nome: 1, "Estado.nome": 1, "Estado.sigla": 1,"Estado.praias": 1}}
+]).pretty()
+
+db.Empresas.aggregate([
+    {$group: {_id: "$nome", patrimonio: {$max: "$valor_mercado"}}},
+    {$limit: 1}
+])
+
+db.Empresas.aggregate([
+    {$project: {_id: null, patrimonio: {$max: "$valor_mercado"}, nome: 1}},
+    {$project: {_id: 0, patrimonio: 1, nome: 1}}
+])
+
+db.Empresas.aggregate([
+    {$match: {nome: "Ford"}},
+    {$lookup: {
+        from: "Estados",
+        localField: "cidade_id",
+        foreignField: "cidades._id",
+        as: "Estado"
+    }},
+    {$unwind: "$Estado"},
+    {$unwind: "$Estado.cidades"},
+    {$addFields: {mesmaCidade: {$cmp: ["$Estado.cidades._id", "$cidade_id"]}}},
+    {$match: {mesmaCidade: 0}},
+    {$project: {_id: 0, nome: 1, valor_mercado: 1,"Estado.nome": 1, "Estado.cidades.nome": 1}}
+]).pretty()
+
+//Terminado em 30/12/2022 
+//By Erik Vasconcelos

@@ -1,0 +1,47 @@
+db.pessoas.insert({nome: "Carlos", Idade: 18, 
+    endereco: {
+        rua: "Rua industrial",
+        bairro: "São Sebastião",
+        cidade: "Nova Cruz"
+    }
+})
+
+db.pessoas.find().pretty()
+
+db.pessoas.aggregate([
+    {$project: {nome: 1, idade: 1, _id: 0}}
+]).pretty()
+
+db.pessoas.aggregate([
+    {$project: {valor: {$sum: "$livros.valor"}, nome: 1, idade: 1, _id: 0}}
+]).pretty()
+
+db.pessoas.aggregate([
+    {$project: {nome: 1, idade: 1}},
+    {$group: {_id: null, somaIdades: {$sum: "$idade"}}},
+    {$project: {somaIdades: 1, _id: 0}}
+])
+
+
+db.pessoas.aggregate([
+    {$match: {"livros": {$exists: true}}}
+]).pretty()
+
+db.pessoas.aggregate([
+    {$match: {"livros": {$exists: true}}},
+    {$unwind: "$livros"}
+]).pretty()
+
+
+db.pessoas.aggregate([
+    {$match: {"livros": {$exists: true}}},
+    {$unwind: "$livros"},
+    {$match: {"livros.nome": "Lupin"}}
+]).pretty()
+
+db.pessoas.aggregate([
+    {$match: {"livros": {$exists: true}}},
+    {$unwind: "$livros"},
+    {$match: {"livros.nome": "Lupin"}},
+    {$project: {nome: 1, "livros.nome": 1, "livros.valor": 1, _id: 0}}
+]).pretty()
